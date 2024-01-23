@@ -1,14 +1,14 @@
-# imports
+# Imports
 import requests
 import random as rndm
 import discord
 from discord.ext import commands
 
-token = 'YOUR_BOT_TOKEN'  # bot token
+token = 'YOUR_BOT_TOKEN'  # Bot token
 
 intents = discord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(command_prefix='?', intents=intents)  # bot prefix
+bot = commands.Bot(command_prefix='?', intents=intents)  # Bot prefix
 
 
 @bot.event
@@ -24,7 +24,7 @@ async def on_ready():
         print('Fail')
 
 
-bot.remove_command('help')  # delete standart command help
+bot.remove_command('help')  # Delete standart command help
 
 
 @bot.tree.command(name='help', description='Help.')
@@ -33,7 +33,7 @@ async def help(interaction: discord.Interaction):
     help.add_field(name="Command: button", value="Present.", inline=False)
     help.add_field(name="Command: weather [city]", value="Show temperature and weather in your city.", inline=False)
     help.add_field(name="Command: creator", value="Write who created me.", inline=False)
-    help.add_field(name="Command: random", value="Write random number.", inline=False)  # fields
+    help.add_field(name="Command: random", value="Write random number.", inline=False)  # Fields
     help.set_footer(text="Bot version: 1.3.2")
     await interaction.response.send_message(embed=help)  # Command help
 
@@ -47,7 +47,7 @@ class MyView(discord.ui.View):
 
     @discord.ui.button(label='button')
     async def example_button(self, interaction: discord.Interaction, button: discord.ui.Button):
-        await interaction.response.send_message('We are happy to see you <3', ephemeral=True)  # button code
+        await interaction.response.send_message('We are happy to see you <3', ephemeral=True)  # Button code
 
 
 @bot.tree.command(name='weather', description='Show temperature and weather in your city.')
@@ -66,11 +66,11 @@ async def weather(interaction: discord.Interaction, *, location: str):
     await interaction.response.send_message(f'Now in {name} temperature {temperature}°C, {condition}.')
 
 
-# some commands
-@bot.tree.command(name='button', description='Present.')  # creating command in tree(slash command)
-async def button(interaction: discord.Interaction):  # creating command
+# Some commands
+@bot.tree.command(name='button', description='Present.')  # Creating command in tree(slash command)
+async def button(interaction: discord.Interaction):  # Creating command
     view = MyView()  # function
-    view.message = await interaction.response.send_message(view=view)  # reply user with bot message
+    view.message = await interaction.response.send_message(view=view)  # Reply user with bot message
 
 
 @bot.tree.command(name='creator', description='Write who created me.')
@@ -83,4 +83,4 @@ async def random(interaction: discord.Interaction, *, number: int):
     await interaction.response.send_message(f'Random number: {rndm.randrange(number)}')
 
 
-bot.run(token)  # run bot
+bot.run(token)  # Run bot
