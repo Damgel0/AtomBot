@@ -1,10 +1,10 @@
 # Imports
 import requests
-import random as rndm
+import random
 import discord
 from discord.ext import commands
 
-token = 'YOUR_BOT_TOKEN'  # Bot token
+token = 'YOUR_BOT_TOKEN'  # Bot token. Getting on https://discord.com/developers/
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -66,21 +66,18 @@ async def weather(interaction: discord.Interaction, *, location: str):
     await interaction.response.send_message(f'Now in {name} temperature {temperature}°C, {condition}.')
 
 
-# Some commands
+# Add some new commands
 @bot.tree.command(name='button', description='Present.')  # Creating command in tree(slash command)
 async def button(interaction: discord.Interaction):  # Creating command
-    view = MyView()  # function
+    view = MyView()  # Function
     view.message = await interaction.response.send_message(view=view)  # Reply user with bot message
-
 
 @bot.tree.command(name='creator', description='Write who created me.')
 async def creator(interaction: discord.Interaction):
     await interaction.response.send_message('.damgel')
 
-
-@bot.tree.command(name='random', description='Write random number.')
-async def random(interaction: discord.Interaction, *, number: int):
-    await interaction.response.send_message(f'Random number: {rndm.randrange(number)}')
-
+@bot.tree.command(name='random_number', description='Write random number.')
+async def random_number(interaction: discord.Interaction, *, number: int):
+    await interaction.response.send_message(f'Random number: {random.randrange(number)}') # Using package random to generate random integer for user
 
 bot.run(token)  # Run bot
