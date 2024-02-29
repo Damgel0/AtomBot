@@ -1,4 +1,4 @@
-***A simple example of Discord bot on Python***
+# A simple example of Discord bot on Python
 
 **Installation** 
 
